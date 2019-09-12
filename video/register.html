@@ -9,8 +9,10 @@ Create an account for Video Streaming Django.
 <br>
 <form action='register' method="POST">
   {% csrf_token %}
-  {{ formA }}
+  <table>
+  {{ formA.as_table }}
+  </table>
   <br>
-  <input type='submit' value='Create Account'>
+  <button type="button" class="btn btn-primary">Create Account</button>
 </form>
 {% endblock %}

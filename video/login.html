@@ -8,8 +8,10 @@ Login to your Account
 <br>
 <form action='login' method="POST">
   {% csrf_token %}
-  {{ formA }}
+  <table>
+  {{ formA.as_table }}
+  </table>
   <br>
-  <input type='submit' value='Log In!'>
+  <button type="button" class="btn btn-primary">Login</button>
 </form>
 {% endblock %}
