@@ -1,0 +1,16 @@
+{% extends "parent.html" %}
+
+{% block title %}
+Create an account for Video Streaming Django.
+{% endblock %}
+
+{% block bodyA %}
+<h1>Create an account for Video Streaming Django.</h1>
+<br>
+<form action='register' method="POST">
+  {% csrf_token %}
+  {{ formA }}
+  <br>
+  <input type='submit' value='Create Account'>
+</form>
+{% endblock %}

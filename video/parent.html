@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} Video Streaming with Python and Django</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <center>
+    <a href="/">Home</a>
+    | <a href="new_video">Add Video</a>
+    | <a href="login">Sign In</a>
+    | <a href="register">Sign Up</a>
+    | Support
+    </br>
+    {% block bodyA %}
+    {% endblock %}
+    </center>
+  </body>
+</html>
