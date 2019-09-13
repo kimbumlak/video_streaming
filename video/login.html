@@ -1,17 +1,18 @@
 {% extends "parent.html" %}
 
 {% block title %}
-Login to your Account
+Log into your Account
 {% endblock %}
 
-{% block bodyA %}
+
+{% block body %}
 <br>
-<form action='login' method="POST">
-  {% csrf_token %}
-  <table>
-  {{ formA.as_table }}
-  </table>
-  <br>
-  <button type="button" class="btn btn-primary">Login</button>
+<form action="login" method="POST" role="form">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <br>
+    <button type="submit" class="btn btn-primary" role="button">Log In</button>
 </form>
 {% endblock %}

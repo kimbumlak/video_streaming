@@ -4,14 +4,20 @@
 Home
 {% endblock %}
 
-{% block bodyA %}
-<h1>Welcome to Video Streaming Django Page.</h1><br>
-
-Most Recent Videos:<br>
-
-
-Video ID 1<br>
-Video ID 2
-
+{% block body %}
+<h1>Welcome to Video Streaming Django Page!</h1><br>
+<br>
+<h3>Most Recent Videos:</h3>
+<br>
+{% for video in most_recent_videos %}
+<div style="align-content: left; width:50%; border-color:blue; border-width:1px; border-style:solid;">
+  <h4>{{ video.title }}</h4>
+  <p style="font-size: 11px; color:gray;">Uploaded by {{ video.user }} on {{ video.datetime }} </p>
+  <p> {{ video.description }} </p>
+  <p style="text-align: right"><a href='/video/{{ video.id }}'>Watch Video</a></p>
+</div>
+<br>
+<br>
+{% endfor %}
 
 {% endblock %}
