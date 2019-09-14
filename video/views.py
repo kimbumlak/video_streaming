@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.base import View, HttpResponseRedirect, HttpResponse
-from .forms import LoginForm, RegisterForm, NewVideoForm
+from .forms import LoginForm, RegisterForm, NewVideoForm, CommentForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import Video, Comment
 import string, random
+from django.core.files.storage import FileSystemStorage
+import os
 
 
 class HomeView(View):
@@ -17,14 +19,29 @@ class HomeView(View):
         return render(request, self.template_name, {'menu_active_item': 'home',
         'most_recent_videos': most_recent_videos})
 
+
+class VideoView(View):
+    template_name = 'video.html'
+
+    def get(self, request, id):
+        #fetch video from DB by ID
+        video_by_id = Video.objects.get(id=id)
+        context = {'video':video_by_id}
+
+        if request.user.is_authenticated:
+            comment_form = CommentForm()
+            context['form'] = comment_form
+        print(context)
+        return render(request, self.template_name, context)
+
+
+
 class LoginView(View):
     template_name = 'login.html'
 
     def get(self, request):
         if request.user.is_authenticated:
-            print('already logged in. Redirecting.')
-            print(request.user)
-            logout(request)
+            #logout(request)
             return HttpResponseRedirect('/')
 
         form = LoginForm()
@@ -45,6 +62,26 @@ class LoginView(View):
             else:
                 return HttpResponseRedirect('login')
         return HttpResponse('This is Login view. POST Request.')
+
+
+
+class CommentView(View):
+    template_name = 'comment.html'
+
+    def post(self, request):
+        # pass filled out HTML-Form from View to CommentForm()
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            # create a Comment DB Entry
+            text = form.cleaned_data['text']
+            video_id = request.POST['video']
+            video = Video.objects.get(id=video_id)
+            new_comment = Comment(text=text, user=request.user, video=video)
+            new_comment.save()
+            return HttpResponseRedirect('/video/{}'.format(str(video_id)))
+        return HttpResponse('This is Register view. POST Request.')
+
+
 
 class RegisterView(View):
     template_name = 'register.html'
@@ -71,6 +108,8 @@ class RegisterView(View):
             new_user.save()
             return HttpResponseRedirect('/login')
         return HttpResponse('This is Register view. POST Request.')
+
+
 
 class NewVideo(View):
     template_name = 'new_video.html'
