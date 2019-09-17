@@ -17,14 +17,20 @@
               <a class="nav-link {% if request.path == '/' %} active {% endif %}" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if request.path == '/new_video' %} active {% endif %}" href="new_video">Add Video</a>
+              <a class="nav-link {% if request.path == '/new_video' %} active {% endif %}" href="/new_video">Add Video</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/logout" tabindex="-1" aria-disabled="true">Log Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == '/login' %} active {% endif %}" href="/login">Sign In</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if request.path == '/login' %} active {% endif %}" href="login">Sign In</a>
+              <a class="nav-link {% if request.path == '/register' %} active {% endif %}" href="/register" tabindex="-1" aria-disabled="true">Sign Up</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/register' %} active {% endif %}" href="register" tabindex="-1" aria-disabled="true">Sign Up</a>
-            </li>
+            {% endif %}
           </ul>
         <br>
         <div class="container-fluid">
