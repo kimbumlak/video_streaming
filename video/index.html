@@ -1,8 +1,8 @@
 {% extends "parent.html" %}
 
-{% block title %}
+<!-- {% block title %}
 Home
-{% endblock %}
+{% endblock %} -->
 
 {% block body %}
 <h1>Welcome to Video Streaming Django Page!</h1><br>
@@ -10,14 +10,23 @@ Home
 <h3>Most Recent Videos:</h3>
 <br>
 {% for video in most_recent_videos %}
-<div style="align-content: left; width:50%; border-color:blue; border-width:1px; border-style:solid;">
+
+<div class="jumbotron">
+  <h1 class="display-4">{{ video.title }}</h1>
+  <p class="lead">{{ video.description }}</p>
+  <hr class="my-4">
+  <p style="font-size: 13px">Uploaded by {{ video.user }} on {{ video.datetime }}</p>
+  <a class="btn btn-primary btn-lg" href="/video/{{ video.id }}" role="button">Watch Video</a>
+</div>
+
+<!-- <div style="align-content: left; width:50%; border-color:blue; border-width:1px; border-style:solid;">
   <h4>{{ video.title }}</h4>
   <p style="font-size: 11px; color:gray;">Uploaded by {{ video.user }} on {{ video.datetime }} </p>
   <p> {{ video.description }} </p>
   <p style="text-align: right"><a href='/video/{{ video.id }}'>Watch Video</a></p>
 </div>
 <br>
-<br>
+<br> -->
 {% endfor %}
 
 {% endblock %}

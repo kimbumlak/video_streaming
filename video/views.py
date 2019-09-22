@@ -8,6 +8,8 @@ import string, random
 from django.core.files.storage import FileSystemStorage
 import os
 from wsgiref.util import FileWrapper
+from django.contrib import messages
+#from django.shortcuts import render_to_response
 
 class VideoFileView(View):
     def get(self, request, file_name):
@@ -136,7 +138,9 @@ class NewVideo(View):
         print(request.user.is_authenticated)
         if request.user.is_authenticated == False:
             #return HttpResponse('You have to be logged in, in order to upload a video.')
-            return HttpResponseRedirect('/register')
+            messages.warning(request, 'You Must Log In to Upload Videos!!')
+            return HttpResponseRedirect('/login')
+            #return render_to_response('/login', message='You Must Log In to Upload Videos!!')
 
         form = NewVideoForm()
         return render(request, self.template_name, {'form':form})

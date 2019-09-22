@@ -1,13 +1,12 @@
 {% extends "parent.html" %}
 
-{% block title %}
+<!-- {% block title %}
 Upload Video
-{% endblock %}
+{% endblock %} -->
 
 {% block body %}
-This is NewVideo View.<br>
-This is a GET Request. <br>
-
+<h1>Upload New Video</h1>
+<br>
 <form action="new_video" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
@@ -19,5 +18,9 @@ This is a GET Request. <br>
       </td>
 </tr>
 </table>
+
+
 </form>
+
+
 {% endblock %}
