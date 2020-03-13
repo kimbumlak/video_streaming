@@ -21,7 +21,6 @@ pycparser==2.19
 pylint==2.3.1
 pylint-django==2.0.14
 pylint-plugin-utils==0.6
-pyodbc==4.0.26
 pyOpenSSL==19.0.0
 pyparsing==2.4.0
 pyrsistent==0.14.11
