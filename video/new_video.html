@@ -1,6 +1,5 @@
 {% extends "parent.html" %}
 {% load static %}
-{% load progress_bar %}
 
 <!-- {% block title %}
 Upload Video
@@ -8,13 +7,11 @@ Upload Video
 
 {% block body %}
 <h1>Upload New Video</h1>
-{% progress_bar_media %}
 <br>
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
     {{ form.as_table }}
-    {% progress_bar %}
     <tr>
       <td></td>
       <td>
